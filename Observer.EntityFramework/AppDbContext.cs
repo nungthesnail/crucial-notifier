@@ -12,7 +12,7 @@ public class AppDbContext : DbContext
     private readonly string _connectionString;
     public DbSet<HistoryStamp> HistoryStamps { get; set; }
     public DbSet<Recipient> Recipients { get; set; }
-
+    
     public AppDbContext(IConfiguration config)
     {
         _connectionString = config.GetConnectionString("Postgres")
@@ -28,6 +28,7 @@ public class AppDbContext : DbContext
         static void ConfigureHistoryStamp(EntityTypeBuilder<HistoryStamp> entityBuilder)
         {
             entityBuilder
+                .ToTable("history_stamp")
                 .HasKey(static x => x.Id);
             entityBuilder
                 .Property(static x => x.Id)
@@ -51,6 +52,7 @@ public class AppDbContext : DbContext
         static void ConfigureRecipient(EntityTypeBuilder<Recipient> entityBuilder)
         {
             entityBuilder
+                .ToTable("recipient")
                 .HasKey(static x => x.Id);
             entityBuilder
                 .Property(static x => x.Id)
