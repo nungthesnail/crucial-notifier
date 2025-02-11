@@ -24,6 +24,6 @@ public class ObservationDispatcher : IObservationDispatcher
         var currentData = await _contentProvider.GetContentAsync(stoppingToken);
         var previousData = _historyProvider.GetLastContent(stoppingToken);
         var comparisonResult = _dataComparer.Compare(currentData, previousData);
-        await _resultHandler.HandleResultAsync(comparisonResult);
+        await _resultHandler.HandleResultAsync(comparisonResult, stoppingToken);
     }
 }

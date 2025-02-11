@@ -52,7 +52,6 @@ public class ContentProvider : IContentProvider
             => new()
             {
                 Hash = hash,
-                Content = stringContent,
                 LastModified = modifiedTimestamp
             };
     }

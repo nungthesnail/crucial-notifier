@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
 {
     private readonly string _connectionString;
     public DbSet<HistoryStamp> HistoryStamps { get; set; }
+    public DbSet<Recipient> Recipients { get; set; }
 
     public AppDbContext(IConfiguration config)
     {
@@ -21,6 +22,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ConfigureHistoryStamp(modelBuilder.Entity<HistoryStamp>());
+        ConfigureRecipient(modelBuilder.Entity<Recipient>());
         return;
         
         static void ConfigureHistoryStamp(EntityTypeBuilder<HistoryStamp> entityBuilder)
@@ -44,6 +46,30 @@ public class AppDbContext : DbContext
                 .Property(static x => x.InsertedAt)
                 .HasColumnName("inserted_at_ts")
                 .HasDefaultValueSql("now()");
+        }
+
+        static void ConfigureRecipient(EntityTypeBuilder<Recipient> entityBuilder)
+        {
+            entityBuilder
+                .HasKey(static x => x.Id);
+            entityBuilder
+                .Property(static x => x.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+            entityBuilder
+                .Property(static x => x.Identifier)
+                .HasColumnName("identifier")
+                .HasMaxLength(256);
+            entityBuilder
+                .Property(static x => x.Type)
+                .HasColumnName("type")
+                .IsRequired();
+            entityBuilder
+                .Property(static x => x.Active)
+                .HasColumnName("active")
+                .HasDefaultValueSql("true")
+                .IsRequired();
         }
     }
 

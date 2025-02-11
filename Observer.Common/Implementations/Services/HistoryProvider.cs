@@ -26,7 +26,6 @@ public class HistoryProvider : IHistoryProvider
 
         return new WebPageContent
         {
-            Content = string.Empty,
             Hash = lastStamp.Hash,
             LastModified = lastStamp.LastModified
         };

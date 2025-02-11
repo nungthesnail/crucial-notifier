@@ -4,5 +4,5 @@ namespace Observer.Common.Interfaces.Services;
 
 public interface IResultHandler
 {
-    Task HandleResultAsync(ComparisonResult result);
+    Task HandleResultAsync(ComparisonResult result, CancellationToken stoppingToken);
 }
