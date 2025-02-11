@@ -21,4 +21,8 @@
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Observer.Common\Observer.Common.csproj" />
+    </ItemGroup>
+
 </Project>

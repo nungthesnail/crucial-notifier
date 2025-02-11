@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Observer.Common.Implementations.Fakes.Configuration;
 using Observer.Common.Implementations.Fakes.Services;
 using Observer.Common.Implementations.Fakes.Services.FakeContentProvider;
@@ -14,7 +15,7 @@ using Observer.EntityFramework;
 
 namespace Observer.Common.Implementations.Fakes.Observation;
 
-public sealed class FakeObservationFactoryBuilder
+public sealed class FakeObservationDispatcherFactoryBuilder
 {
     private readonly BuildingSettings _settings = new();
 
@@ -75,7 +76,7 @@ public sealed class FakeObservationFactoryBuilder
             services.AddTransient<INotifierTaskBuilder, NotifierTaskBuilder>();
             services.AddTransient<IResultHandler, ResultHandler>();
 
-            services.AddLogging();
+            services.AddLogging(static builder => builder.AddConsole());
             services.AddTransient<IConfiguration>(static _ => CreateConfiguration());
         }
     }

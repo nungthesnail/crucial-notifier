@@ -6,9 +6,9 @@ namespace Observer.Common.Implementations.Services.Result;
 
 public class NotifierTaskBuilder : INotifierTaskBuilder
 {
-    private readonly RecipientsProvider _recipientsProvider;
+    private readonly IRecipientsProvider _recipientsProvider;
 
-    public NotifierTaskBuilder(RecipientsProvider recipientsProvider)
+    public NotifierTaskBuilder(IRecipientsProvider recipientsProvider)
     {
         _recipientsProvider = recipientsProvider;
     }
