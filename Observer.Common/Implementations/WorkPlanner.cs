@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Observer.Common.Interfaces.ObservationDispatcher;
+using Observer.Common.Interfaces.Observation;
 
 namespace Observer.Common.Implementations;
 

@@ -1,4 +1,4 @@
-﻿namespace Observer.Common.Interfaces.ObservationDispatcher;
+﻿namespace Observer.Common.Interfaces.Observation;
 
 public interface IObservationDispatcherFactory
 {

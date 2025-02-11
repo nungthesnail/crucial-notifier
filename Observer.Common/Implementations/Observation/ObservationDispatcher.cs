@@ -1,7 +1,7 @@
-﻿using Observer.Common.Interfaces.ObservationDispatcher;
+﻿using Observer.Common.Interfaces.Observation;
 using Observer.Common.Interfaces.Services;
 
-namespace Observer.Common.Implementations.ObservationDispatcher;
+namespace Observer.Common.Implementations.Observation;
 
 public class ObservationDispatcher : IObservationDispatcher
 {

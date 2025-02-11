@@ -5,7 +5,7 @@ using Observer.Common.Models;
 using Observer.Common.Models.Notifier;
 using Observer.EntityFramework;
 
-namespace Observer.Common.Implementations.Services.ResultHandler;
+namespace Observer.Common.Implementations.Services.Result;
 
 public class RecipientsProvider : IRecipientsProvider
 {

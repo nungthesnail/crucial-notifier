@@ -2,7 +2,7 @@
 using Observer.Common.Models;
 using Observer.Common.Models.Notifier;
 
-namespace Observer.Common.Implementations.Services.ResultHandler;
+namespace Observer.Common.Implementations.Services.Result;
 
 public class NotifierTaskBuilder : INotifierTaskBuilder
 {

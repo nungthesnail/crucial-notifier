@@ -1,12 +1,11 @@
 ﻿using System.Security.Cryptography;
-using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Observer.Common.Exceptions;
 using Observer.Common.Interfaces.Services;
 using Observer.Common.Models;
 
-namespace Observer.Common.Implementations.Services.ContentProvider;
+namespace Observer.Common.Implementations.Services.Content;
 
 public class ContentProvider : IContentProvider
 {
@@ -30,7 +29,6 @@ public class ContentProvider : IContentProvider
         _logger.LogInformation("Getting content from target url...");
         
         var pageContent = await GetTargetResourceAsync(stoppingToken);
-        var stringContent = ReadStream(pageContent);
         _logger.LogInformation("Content received");
         
         var modifiedTimestamp = _parser.ExtractModifiedTimestamp(pageContent);
@@ -41,12 +39,6 @@ public class ContentProvider : IContentProvider
         _logger.LogInformation("Hash of current content calculated: {hash}", hash);
         
         return BuildContentModel();
-
-        static string ReadStream(Stream stream)
-        {
-            using var streamReader = new StreamReader(stream, Encoding.UTF8);
-            return streamReader.ReadToEnd();
-        }
 
         WebPageContent BuildContentModel()
             => new()

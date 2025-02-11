@@ -1,4 +1,4 @@
-﻿namespace Observer.Common.Implementations.Services.ContentProvider;
+﻿namespace Observer.Common.Implementations.Services.Content;
 
 public class HtmlParserSettings
 {

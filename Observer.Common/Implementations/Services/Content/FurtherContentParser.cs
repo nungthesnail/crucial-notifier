@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using Microsoft.Extensions.Configuration;
 using Observer.Common.Exceptions;
 
-namespace Observer.Common.Implementations.Services.ContentProvider;
+namespace Observer.Common.Implementations.Services.Content;
 
 public class FurtherContentParser
 {

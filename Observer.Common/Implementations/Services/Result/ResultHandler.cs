@@ -2,7 +2,7 @@
 using Observer.Common.Interfaces.Services;
 using Observer.Common.Models;
 
-namespace Observer.Common.Implementations.Services.ResultHandler;
+namespace Observer.Common.Implementations.Services.Result;
 
 public class ResultHandler : IResultHandler
 {

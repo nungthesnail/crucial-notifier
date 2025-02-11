@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Observer.Common.Interfaces.ObservationDispatcher;
+using Observer.Common.Interfaces.Observation;
 
-namespace Observer.Common.Implementations.ObservationDispatcher;
+namespace Observer.Common.Implementations.Observation;
 
 public class ObservationDispatcherFactory : IObservationDispatcherFactory
 {
