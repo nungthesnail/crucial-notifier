@@ -31,11 +31,11 @@ public class WorkPlanner : BackgroundService
 
         do
         {
-            await PerformIteration(stoppingToken);
+            await PerformIterationAsync(stoppingToken);
         } while (!stoppingToken.IsCancellationRequested && await timer.WaitForNextTickAsync(stoppingToken));
     }
 
-    private async Task PerformIteration(CancellationToken stoppingToken)
+    private async Task PerformIterationAsync(CancellationToken stoppingToken)
     {
         var iterationId = Interlocked.Increment(ref _iterationId);
         try
