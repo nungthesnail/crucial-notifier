@@ -12,15 +12,15 @@ public class DataComparer : IDataComparer
             return new ComparisonResult
             {
                 HashesIdentical = false,
-                ModifiedTimestampsIdentical = false
+                ModifiedTimestampsIdentical = false,
+                LastModifiedTimestamp = current.LastModified
             };
 
         return new ComparisonResult
         {
             HashesIdentical = current.Hash.Equals(previous.Hash),
             ModifiedTimestampsIdentical = current.LastModified == previous.LastModified,
-            LastModifiedTimestamp = current.LastModified > previous.LastModified
-                ? current.LastModified : previous.LastModified
+            LastModifiedTimestamp = current.LastModified
         };
     }
 }
