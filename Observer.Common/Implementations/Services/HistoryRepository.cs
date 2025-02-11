@@ -1,14 +1,15 @@
 ﻿using Observer.Common.Interfaces.Services;
 using Observer.Common.Models;
 using Observer.EntityFramework;
+using Observer.EntityFramework.Models;
 
 namespace Observer.Common.Implementations.Services;
 
-public class HistoryProvider : IHistoryProvider
+public class HistoryRepository : IHistoryRepository
 {
     private readonly AppDbContext _dbContext;
 
-    public HistoryProvider(AppDbContext dbContext)
+    public HistoryRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -29,5 +30,17 @@ public class HistoryProvider : IHistoryProvider
             Hash = lastStamp.Hash,
             LastModified = lastStamp.LastModified
         };
+    }
+
+    public async Task AddHistoryStampAsync(WebPageContent current, CancellationToken stoppingToken)
+    {
+        var dbModel = new HistoryStamp
+        {
+            Hash = current.Hash,
+            LastModified = current.LastModified,
+            InsertedAt = DateTimeOffset.Now
+        };
+        
+        await _dbContext.HistoryStamps.AddAsync(dbModel, stoppingToken);
     }
 }

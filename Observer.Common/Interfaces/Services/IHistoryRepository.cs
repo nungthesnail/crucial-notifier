@@ -2,7 +2,9 @@
 
 namespace Observer.Common.Interfaces.Services;
 
-public interface IHistoryProvider
+public interface IHistoryRepository
 {
     WebPageContent? GetLastContent(CancellationToken stoppingToken);
+    
+    Task AddHistoryStampAsync(WebPageContent current, CancellationToken stoppingToken);
 }
