@@ -7,6 +7,8 @@ public class Md5HashCalculator : IHashCalculator
 {
     public async Task<string> CalculateHashAsync(Stream content)
     {
+        ArgumentNullException.ThrowIfNull(content);
+        
         var hasher = MD5.Create();
         var hash = await hasher.ComputeHashAsync(content);
         return BitConverter
