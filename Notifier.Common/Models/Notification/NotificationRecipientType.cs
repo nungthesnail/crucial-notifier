@@ -1,4 +1,4 @@
-﻿namespace Observer.Common.Models.Notifier;
+﻿namespace Notifier.Common.Models.Notification;
 
 public enum NotificationRecipientType
 {
