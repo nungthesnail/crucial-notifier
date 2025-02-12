@@ -75,6 +75,7 @@ public sealed class FakeObservationDispatcherFactoryBuilder
             services.AddTransient<IDataComparer, DataComparer>();
             services.AddTransient<INotifierTaskBuilder, NotifierTaskBuilder>();
             services.AddTransient<IResultHandler, ResultHandler>();
+            services.AddTransient<IHashCalculator, Md5HashCalculator>();
 
             services.AddLogging(static builder => builder.AddConsole());
             services.AddTransient<IConfiguration>(static _ => CreateConfiguration());

@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Observer.Common.Exceptions;
 using Observer.Common.Interfaces.Services;
@@ -12,11 +11,13 @@ public class ContentProvider : IContentProvider
     private static readonly HttpClient HttpClient = new();
     private readonly ILogger<ContentProvider> _logger;
     private readonly FurtherContentParser _parser;
+    private readonly IHashCalculator _hashCalculator;
     private readonly string _targetUrl;
     
-    public ContentProvider(ILogger<ContentProvider> logger, IConfiguration config)
+    public ContentProvider(ILogger<ContentProvider> logger, IHashCalculator hashCalculator, IConfiguration config)
     {
         _logger = logger;
+        _hashCalculator = hashCalculator;
         _parser = new FurtherContentParser(config);
         _targetUrl = config.GetValue<string>("ObservingUrl") 
                      ?? throw new BadConfigurationException("ObservingUrl isn't specified");
@@ -35,7 +36,7 @@ public class ContentProvider : IContentProvider
         _logger.LogInformation("Timestamp of last modification was {action}",
             modifiedTimestamp.HasValue ? $"extracted: {modifiedTimestamp}" : "not extracted");
         
-        var hash = await CalculateHash(pageContent);
+        var hash = await _hashCalculator.CalculateHashAsync(pageContent);
         _logger.LogInformation("Hash of current content calculated: {hash}", hash);
         
         return BuildContentModel();
@@ -74,12 +75,5 @@ public class ContentProvider : IContentProvider
                 _targetUrl,code);
             throw new HttpFailedRequestException($"Http response code: {code}");
         }
-    }
-
-    private async Task<string> CalculateHash(Stream content)
-    {
-        var hasher = MD5.Create();
-        var hash = await hasher.ComputeHashAsync(content);
-        return BitConverter.ToString(hash).Replace("-", string.Empty);
     }
 }
