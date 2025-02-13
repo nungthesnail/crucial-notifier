@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  rabbitmq:
+    image: rabbitmq:4
+    hostname: rabbitmq_host
+    environment:
+      - RABBITMQ_DEFAULT_USER=mquser
+      - RABBITMQ_DEFAULT_PASS=123456
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit disk_free_limit 2147483648
+    volumes:
+      - C:/var/lib/rabbitmq:/var/lib/rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672

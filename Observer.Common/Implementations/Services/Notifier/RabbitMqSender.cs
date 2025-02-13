@@ -23,14 +23,16 @@ public sealed class RabbitMqSender
             
             var factory = new ConnectionFactory
             {
-                HostName = _settings.HostName
+                HostName = _settings.Host,
+                UserName = _settings.User,
+                Password = _settings.Password
             };
 
             await using var connection = await factory.CreateConnectionAsync(cancellationToken: stoppingToken);
             await using var channel = await connection.CreateChannelAsync(cancellationToken: stoppingToken);
 
             await channel.QueueDeclareAsync(
-                queue: _settings.QueueName,
+                queue: _settings.Queue,
                 durable: true,
                 exclusive: false,
                 autoDelete: false,
@@ -45,9 +47,9 @@ public sealed class RabbitMqSender
                 body: messageBytes,
                 cancellationToken: stoppingToken);
         }
-        catch (BrokerUnreachableException)
+        catch (BrokerUnreachableException exc)
         {
-            throw new RabbitMqException("Broker is currently unreachable");
+            throw new RabbitMqException($"Broker is currently unavailable because {exc.Message}");
         }
     }
 }
