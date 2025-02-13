@@ -1,12 +1,12 @@
 ﻿using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
+using AngleSharp.Dom;
+using AngleSharp.Html.Parser;
 using Microsoft.Extensions.Configuration;
-using Observer.Common.Exceptions;
 
 namespace Observer.Common.Implementations.Services.Content;
 
-public class FurtherContentParser
+public partial class FurtherContentParser
 {
     private readonly HtmlParserSettings _settings = new();
     
@@ -20,18 +20,10 @@ public class FurtherContentParser
     
     public DateTimeOffset? ExtractModifiedTimestamp(Stream htmlContent)
     {
-        var doc = XDocument.Load(htmlContent);
-        var root = doc.Root;
-        
-        if (root is null)
-            throw new ParsingException("Something failed while parsing the HTML content");
-        
-        var element = root
-            .Elements()
-            .FirstOrDefault(
-                x => x.Attribute(_settings.InterestingAttribute)?.Value == _settings.InterestingAttributeValue);
-        
-        return element is null ? null : ExtractTimestampFromText(element.Value);
+        var parser = new HtmlParser().ParseDocument(htmlContent);
+        var query = $".{_settings.InterestingClass}";
+        var element = parser.QuerySelector(query);
+        return element is not null ? ExtractTimestampFromText(element.Text()) : null;
     }
 
     private static DateTimeOffset? ExtractTimestampFromText(string text)
@@ -47,8 +39,7 @@ public class FurtherContentParser
         {
             try
             {
-                const string regExpr = @"\b\d{2}\.\d{2}\.\d{4}\b";
-                var regex = new Regex(regExpr);
+                var regex = DateRegex();
                 var match = regex.Match(text);
                 if (match.Success)
                     return DateTimeOffset.Parse(match.Value, CultureInfo.InvariantCulture);
@@ -65,7 +56,7 @@ public class FurtherContentParser
             try
             {
                 const string regExpr = @"\b(2[0-3]|[01]?[0-9]):([0-5]?[0-9])\b";
-                var regex = new Regex(regExpr);
+                var regex = TimeRegex();
                 var match = regex.Match(text);
                 if (match.Success)
                     return DateTimeOffset.Parse(match.Value, CultureInfo.InvariantCulture);
@@ -77,4 +68,9 @@ public class FurtherContentParser
             }
         }
     }
+
+    [GeneratedRegex(@"\b\d{2}\.\d{2}\.\d{4}\b")]
+    private static partial Regex DateRegex();
+    [GeneratedRegex(@"\b(2[0-3]|[01]?[0-9]):([0-5]?[0-9])\b")]
+    private static partial Regex TimeRegex();
 }
