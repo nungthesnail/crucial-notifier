@@ -3,7 +3,8 @@ using Serilog;
 var builder = Host.CreateDefaultBuilder(args);
 
 builder.ConfigureHostConfiguration(static bld => bld
-        .AddJsonFile("appsettings.json")
+        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+        .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
         .AddEnvironmentVariables())
     
     .ConfigureLogging(static (ctx, logging) =>
