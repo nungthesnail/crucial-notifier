@@ -9,7 +9,7 @@ using RabbitMQ.Client.Events;
 
 namespace Notifier.Common.Implementations;
 
-public class BrokerListener : BackgroundService
+public sealed class BrokerListener : BackgroundService
 {
     private event MessageHandler OnMessageReceived;
     
@@ -42,19 +42,35 @@ public class BrokerListener : BackgroundService
             await _channel.BasicAckAsync(message.DeliveryTag, false, stoppingToken);
         };
 
-        await _channel.BasicConsumeAsync(_settings.QueueName, false, consumer, stoppingToken);
+        await _channel.BasicConsumeAsync(_settings.Queue, false, consumer, stoppingToken);
     }
 
     private async Task InitializeRabbitMq()
     {
-        var factory = new ConnectionFactory { HostName = _settings.HostName };
+        var factory = new ConnectionFactory
+        {
+            HostName = _settings.Host,
+            UserName = _settings.User,
+            Password = _settings.Password
+        };
+        
         _connection = await factory.CreateConnectionAsync();
         _channel = await _connection.CreateChannelAsync();
         await _channel.QueueDeclareAsync(
-            queue: _settings.QueueName,
+            queue: _settings.Queue,
             durable: true,
             exclusive: false,
             autoDelete: false);
+
+        LogRabbitMqInformation();
+
+        return;
+        
+        void LogRabbitMqInformation()
+        {
+            _logger.LogInformation("RabbitMQ Listener initialized.");
+            _logger.LogInformation("Listening to queue {queue}", _settings.Queue);
+        }
     }
 
     public override void Dispose()

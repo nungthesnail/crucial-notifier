@@ -1,28 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.Extensions.Configuration;
-using Observer.EntityFramework.Exceptions;
+using Observer.EntityFramework.Converters;
 using Observer.EntityFramework.Models;
 
 namespace Observer.EntityFramework;
 
 public class AppDbContext : DbContext
 {
-    private readonly string _connectionString;
     public DbSet<HistoryStamp> HistoryStamps { get; set; }
     public DbSet<Recipient> Recipients { get; set; }
+    public DbSet<NotificationSendingEvent> NotificationSendingEvents { get; set; }
     
-    public AppDbContext(IConfiguration config)
-    {
-        _connectionString = config.GetConnectionString("Postgres")
-                            ?? throw new BadConfigurationException("Postgres connection string isn't specified");
-    }
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
+    { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ConfigureHistoryStamp(modelBuilder.Entity<HistoryStamp>());
         ConfigureRecipient(modelBuilder.Entity<Recipient>());
+        ConfigureNotificationSendingEvent(modelBuilder.Entity<NotificationSendingEvent>());
         return;
         
         static void ConfigureHistoryStamp(EntityTypeBuilder<HistoryStamp> entityBuilder)
@@ -73,10 +70,34 @@ public class AppDbContext : DbContext
                 .HasDefaultValueSql("true")
                 .IsRequired();
         }
+
+        static void ConfigureNotificationSendingEvent(EntityTypeBuilder<NotificationSendingEvent> entityBuilder)
+        {
+            entityBuilder
+                .ToTable("notification_sending_event")
+                .HasKey(static x => x.Id);
+            entityBuilder
+                .Property(static x => x.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd()
+                .IsRequired();
+            entityBuilder
+                .Property(static x => x.Sent)
+                .HasColumnName("sent")
+                .HasDefaultValueSql("false")
+                .IsRequired();
+            entityBuilder
+                .Property(static x => x.Timestamp)
+                .HasColumnName("ts")
+                .HasDefaultValueSql("now()")
+                .IsRequired();
+        }
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        optionsBuilder.UseNpgsql(_connectionString);
+        configurationBuilder
+            .Properties<DateTimeOffset>()
+            .HaveConversion<DateTimeOffsetConverter>();
     }
 }

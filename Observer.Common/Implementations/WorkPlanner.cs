@@ -42,7 +42,7 @@ public class WorkPlanner : BackgroundService
         {
             _logger.LogInformation("Starting iteration {iterationId}", iterationId);
 
-            var dispatcher = _dispatcherFactory.CreateObservationDispatcher();
+            using var dispatcher = _dispatcherFactory.CreateObservationDispatcher();
             await dispatcher.ObserveAsync(stoppingToken);
             
             _logger.LogInformation("Iteration {iterationId} completed", iterationId);

@@ -26,7 +26,7 @@ public partial class FurtherContentParser
         return element is not null ? ExtractTimestampFromText(element.Text()) : null;
     }
 
-    private static DateTimeOffset? ExtractTimestampFromText(string text)
+    private DateTimeOffset? ExtractTimestampFromText(string text)
     {
         var date = ExtractDate();
         var time = ExtractTime();
@@ -42,7 +42,9 @@ public partial class FurtherContentParser
                 var regex = DateRegex();
                 var match = regex.Match(text);
                 if (match.Success)
-                    return DateTimeOffset.Parse(match.Value, CultureInfo.InvariantCulture);
+                    return DateTimeOffset.Parse(
+                        match.Value,
+                        CultureInfo.GetCultureInfoByIetfLanguageTag(_settings.CultureCode));
                 return null;
             }
             catch (FormatException)
@@ -55,11 +57,12 @@ public partial class FurtherContentParser
         {
             try
             {
-                const string regExpr = @"\b(2[0-3]|[01]?[0-9]):([0-5]?[0-9])\b";
                 var regex = TimeRegex();
                 var match = regex.Match(text);
                 if (match.Success)
-                    return DateTimeOffset.Parse(match.Value, CultureInfo.InvariantCulture);
+                    return DateTimeOffset.Parse(
+                        match.Value, 
+                        CultureInfo.GetCultureInfoByIetfLanguageTag(_settings.CultureCode));
                 return null;
             }
             catch (FormatException)

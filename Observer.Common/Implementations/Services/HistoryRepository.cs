@@ -5,7 +5,7 @@ using Observer.EntityFramework.Models;
 
 namespace Observer.Common.Implementations.Services;
 
-public class HistoryRepository : IHistoryRepository
+public sealed class HistoryRepository : IHistoryRepository
 {
     private readonly AppDbContext _dbContext;
 
@@ -42,5 +42,18 @@ public class HistoryRepository : IHistoryRepository
         };
         
         await _dbContext.HistoryStamps.AddAsync(dbModel, stoppingToken);
+        await _dbContext.SaveChangesAsync(stoppingToken);
+    }
+
+    public async Task AddSendingEventAsync(bool sent, CancellationToken stoppingToken)
+    {
+        var dbModel = new NotificationSendingEvent
+        {
+            Sent = sent,
+            Timestamp = DateTimeOffset.Now
+        };
+        
+        await _dbContext.NotificationSendingEvents.AddAsync(dbModel, CancellationToken.None);
+        await _dbContext.SaveChangesAsync(stoppingToken);
     }
 }

@@ -34,7 +34,7 @@ public class ConcreteMessageHandlerResolver : IConcreteMessageHandlerResolver
     
     private static void ThrowIfSchemaIsInvalid(JsonNode rootNode)
     {
-        var schema = rootNode["schema"] ?? throw new BadJsonException("Json schema isn't specified");
+        var schema = rootNode["Schema"] ?? throw new BadJsonException("Json schema isn't specified");
         var schemaValue = schema
             .AsValue()
             .GetValue<string>();
@@ -45,7 +45,7 @@ public class ConcreteMessageHandlerResolver : IConcreteMessageHandlerResolver
     
     private static string ExtractMessageType(JsonNode rootNode)
     {
-        var messageType = rootNode["messageType"] ?? throw new BadJsonException("Message type isn't specified");
+        var messageType = rootNode["MessageType"] ?? throw new BadJsonException("Message type isn't specified");
         return messageType
             .AsValue()
             .GetValue<string>();

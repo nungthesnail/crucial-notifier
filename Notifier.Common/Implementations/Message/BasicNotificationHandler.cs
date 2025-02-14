@@ -29,7 +29,10 @@ public class BasicNotificationHandler : IMessageHandler
         LogNotificationContent(notification);
         LogNotificationRecipients(notification);
 
-        return SendNotificationAsync(notification.Recipients, message, NotificationRecipientType.Email); // Sending emails
+        return SendNotificationAsync(
+            notification.Recipients,
+            notification.Content ?? throw new InvalidOperationException("Email content isn't specified."),
+            NotificationRecipientType.Email); // Sending emails
     }
 
     private void LogNotificationContent(NotificationMessage notification)

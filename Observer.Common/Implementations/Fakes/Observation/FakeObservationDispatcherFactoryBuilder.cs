@@ -27,6 +27,7 @@ public sealed class FakeObservationDispatcherFactoryBuilder
     public void NotIntegrateNotifier() => _settings.IntegrateNotifier = false;
     public void SetObservationSubjectStubType(ObservationSubjectStubType type)
         => _settings.ObservationSubjectStubType = type;
+    public void AddConfiguration(IConfiguration config) => _settings.Config = config;
 
     public IObservationDispatcherFactory Build()
     {
@@ -76,9 +77,9 @@ public sealed class FakeObservationDispatcherFactoryBuilder
             services.AddTransient<INotifierTaskBuilder, NotifierTaskBuilder>();
             services.AddTransient<IResultHandler, ResultHandler>();
             services.AddTransient<IHashCalculator, Md5HashCalculator>();
+            services.AddSingleton(_settings.Config ?? CreateConfiguration());
 
             services.AddLogging(static builder => builder.AddConsole());
-            services.AddTransient<IConfiguration>(static _ => CreateConfiguration());
         }
     }
 
@@ -95,6 +96,7 @@ public sealed class FakeObservationDispatcherFactoryBuilder
         public bool IntegrateObservationSubject { get; set; }
         public ObservationSubjectStubType ObservationSubjectStubType { get; set; }
         public bool IntegrateNotifier { get; set; }
+        public IConfiguration? Config { get; set; }
     }
 
     private static class ObservationSubjectStubFactory

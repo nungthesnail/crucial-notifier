@@ -25,4 +25,11 @@
       <ProjectReference Include="..\Observer.Common\Observer.Common.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="appsettings.development.json" />
+      <Content Include="appsettings.development.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

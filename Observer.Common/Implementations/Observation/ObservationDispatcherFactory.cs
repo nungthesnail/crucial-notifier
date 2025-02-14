@@ -5,13 +5,18 @@ namespace Observer.Common.Implementations.Observation;
 
 public class ObservationDispatcherFactory : IObservationDispatcherFactory
 {
-    private readonly IServiceProvider _serviceProvider;
+    private readonly IServiceScopeFactory _scopeFactory;
     
-    public ObservationDispatcherFactory(IServiceProvider serviceProvider)
+    public ObservationDispatcherFactory(IServiceScopeFactory scopeFactory)
     {
-        _serviceProvider = serviceProvider;
+        _scopeFactory = scopeFactory;
     }
 
     public IObservationDispatcher CreateObservationDispatcher()
-        => _serviceProvider.GetRequiredService<IObservationDispatcher>();
+    {
+        var scope = _scopeFactory.CreateScope();
+        var dispatcher = scope.ServiceProvider.GetRequiredService<IObservationDispatcher>();
+        dispatcher.DisposableResources = scope;
+        return dispatcher;
+    }
 }

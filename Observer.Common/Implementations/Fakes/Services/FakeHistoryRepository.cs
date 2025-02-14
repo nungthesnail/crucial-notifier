@@ -24,4 +24,9 @@ public class FakeHistoryRepository : IHistoryRepository
     {
         return _storage.LastOrDefault();
     }
+
+    public Task AddSendingEventAsync(bool sent, CancellationToken stoppingToken)
+    {
+        return Task.CompletedTask;
+    }
 }

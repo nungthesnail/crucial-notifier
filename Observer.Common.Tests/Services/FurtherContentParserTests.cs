@@ -21,7 +21,8 @@ public class FurtherContentParserTests
         var builder = new ConfigurationBuilder();
         var settings = new List<KeyValuePair<string, string?>>
         {
-            new("HtmlParsing:InterestingClass", "ref")
+            new("HtmlParsing:InterestingClass", "ref"),
+            new("HtmlParsing:CultureCode", "ru-RU")
         };
         builder.AddInMemoryCollection(settings);
         return builder.Build();

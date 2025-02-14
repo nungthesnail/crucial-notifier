@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Observer.Common.Interfaces.Services;
-using Observer.Common.Models;
 using Observer.Common.Models.Notifier;
 using Observer.EntityFramework;
 
 namespace Observer.Common.Implementations.Services.Result;
 
-public class RecipientsProvider : IRecipientsProvider
+public sealed class RecipientsProvider : IRecipientsProvider
 {
     private readonly AppDbContext _dbContext;
     
