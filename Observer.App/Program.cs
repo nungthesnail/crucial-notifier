@@ -44,4 +44,14 @@ builder.ConfigureServices(static (hostContext, services) =>
 });
 
 var host = builder.Build();
+MigrateDatabase(host.Services);
 host.Run();
+
+return;
+
+static void MigrateDatabase(IServiceProvider services)
+{
+    using var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}

@@ -264,4 +264,4 @@ appsettings.Development.json
 
 # NCrunch auto-generated files
 *.ncrunch*
-/MeterCollector/Atm.WebApi/.config/dotnet-tools.json
+/secrets

@@ -1,14 +1,57 @@
-version: "2.1"
+version: "3"
 services:
   rabbitmq:
     image: rabbitmq:4
-    hostname: rabbitmq_host
-    environment:
-      - RABBITMQ_DEFAULT_USER=mquser
-      - RABBITMQ_DEFAULT_PASS=123456
-      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit disk_free_limit 2147483648
+    env_file: secrets/environment.env
     volumes:
       - C:/var/lib/rabbitmq:/var/lib/rabbitmq
     ports:
-      - 15672:15672
-      - 5672:5672
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - defaultnetwork
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    shm_size: 128mb
+    env_file: secrets/environment.env
+    volumes:
+      - C:/var/lib/postgresql:/var/lib/postgresql
+    networks:
+      - defaultnetwork
+  
+  observer:
+    build:
+      context: "."
+      dockerfile: "Observer.App/Dockerfile"
+    env_file: secrets/environment.env
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    networks:
+      - defaultnetwork
+  
+  notifier:
+    build:
+      context: "."
+      dockerfile: "Notifier.App/Dockerfile"
+    env_file: secrets/environment.env
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - defaultnetwork
+
+networks:
+  defaultnetwork:
+    driver: bridge
