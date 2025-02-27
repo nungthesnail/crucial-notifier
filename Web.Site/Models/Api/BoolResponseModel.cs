@@ -6,4 +6,12 @@ public class BoolResponseModel
 {
     [JsonPropertyName("result")]
     public bool Result { get; set; }
+
+    public BoolResponseModel()
+    { }
+    
+    public BoolResponseModel(bool value)
+    {
+        Result = value;
+    }
 }

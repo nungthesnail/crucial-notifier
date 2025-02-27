@@ -265,3 +265,4 @@ appsettings.Development.json
 # NCrunch auto-generated files
 *.ncrunch*
 /secrets
+Migrations

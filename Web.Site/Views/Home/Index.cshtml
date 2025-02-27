@@ -12,8 +12,8 @@
     <div id="block-loading">
         <span>Пожалуйста, подождите...</span>
     </div>
-    <div id="block-loading-failed"  class="container" style="display: none">
-        <span>Извините, произошла ошибка при загрузке страницы</span>
+    <div id="block-loading-failed" style="display: none">
+        <span class="text-danger">Извините, произошла ошибка при загрузке данных пользователя.</span>
     </div>
     
     <div id="block-subscribed" style="display: none">
@@ -108,7 +108,7 @@
                 let blockLoadingFailed = $("#block-loading-failed");
                 blockLoading.hide();
                 blockLoadingFailed.show();
-                console.log(`Error info: ${data}`);
+                console.log(`Error info: ${data.statusText}`);
             }
         });
     </script>
