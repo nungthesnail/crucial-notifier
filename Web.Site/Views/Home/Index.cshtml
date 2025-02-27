@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-center align-items-center h-100">
         <h1 class="text-center" id="animated-label">Crucial Notifier...</h1>
     </div>
-    <p class="text-center">Сервис, отсылающий уведомления при обновлении расписания.</p>
+    <p class="text-center">Сервис, отправляющий уведомления при обновлении расписания.</p>
 </div>
 <div class="d-flex justify-content-center">
     <div id="block-loading">
@@ -17,13 +17,19 @@
     </div>
     
     <div id="block-subscribed" style="display: none">
-        <p class="text-success">Вы уже подписаны на рассылку</p>
+        <p>Вы подписаны на рассылку</p>
     </div>
     <div id="block-unsubscribed" style="display: none">
         <button class="btn btn-success p-2">
             <a class="link-light" href="@Url.Action("Index", "Subscribe")">Подписаться на рассылку</a>
         </button>
     </div>
+</div>
+<div class="p-2 border border-2 border-dark rounded-3" style="margin-top: 200pt;">
+    <p>
+        Каждые 10 минут загружается страница с расписанием. Она проверяется на изменение временной метки и контента.
+        Когда расписание обновлено, вам на почту отправляется уведомление.
+    </p>
 </div>
 
 <style>
@@ -36,13 +42,13 @@
     
     @@keyframes gradient {
         0% {
-            background-position: 0% 50%;
+            background-position: 0 50%;
         }
         50% {
             background-position: 100% 50%;
         }
         100% {
-            background-position: 0% 50%;
+            background-position: 0 50%;
         }
     }
     

@@ -2,4 +2,31 @@
     ViewData["Title"] = "Подписаться";
 }
 
-<div class="text-center">Ведутся строительные работы...</div>
+<div id="label-processing" class="text-center">
+    Оформляем подписку...
+</div>
+<div id="label-failed" class="text-center text-danger" style="display: none">
+    <p class="text-center">Не удалось оформить подписку. Что-то пошло не так.</p>
+    <a href="@Url.Action("Index", "Home")" class="link-dark">На главную</a>
+</div>
+
+@section Scripts
+{
+    <script>
+        let url = '@Url.Action("Subscribe", "Api")';
+        $.ajax({
+            type: "POST",
+            url: url,
+            success: function (_) {
+                window.location.replace('@Url.Action("Index", "Home")');
+            },
+            error: function (data) {
+                let labelProcessing = $("#label-processing");
+                let labelFailed = $("#label-failed");
+                labelProcessing.hide();
+                labelFailed.show();
+                console.log(`Error data: ${data.statusText}`);
+            }
+        })
+    </script>
+}

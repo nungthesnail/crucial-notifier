@@ -23,4 +23,24 @@ public class SubscriptitionService : ISubscriptitionService
             .FirstOrDefaultAsync();
         return record?.Active ?? throw new DataNotFoundException("User not found");
     }
+
+    public async Task SubscribeUserAsync(string? userName)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == userName)
+                   ?? throw new DataNotFoundException("User not found");
+        var existingRecord = await _context
+            .Subscriptitions
+            .Where(x => x.UserId == user.Id)
+            .FirstOrDefaultAsync();
+        if (existingRecord is not null)
+            return;
+        
+        var record = new Data.Models.Subscriptition
+        {
+            UserId = user.Id,
+            Active = true
+        };
+        await _context.Subscriptitions.AddAsync(record);
+        await _context.SaveChangesAsync();
+    }
 }
