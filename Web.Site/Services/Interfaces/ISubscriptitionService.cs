@@ -4,4 +4,5 @@ public interface ISubscriptitionService
 {
     Task<bool> IsUserSubscribedAsync(string? userName);
     Task SubscribeUserAsync(string? userName);
+    Task<IEnumerable<string?>> GetSubscribersAsync();
 }

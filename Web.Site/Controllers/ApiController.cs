@@ -7,7 +7,6 @@ using Web.Site.Services.Interfaces;
 namespace Web.Site.Controllers;
 
 [ApiController]
-[Route("/api/[controller]/[action]")]
 public class ApiController : ControllerBase
 {
     private readonly ILogger<ApiController> _logger;
@@ -21,6 +20,7 @@ public class ApiController : ControllerBase
     
     [HttpGet]
     [Route("subscribed")]
+    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> IsUserSubscribedAsync()
     {
         try
@@ -46,7 +46,7 @@ public class ApiController : ControllerBase
     [HttpPost]
     [Route("subscribe")]
     [Authorize]
-    public async Task<IActionResult> Subscribe()
+    public async Task<IActionResult> SubscribeAsync()
     {
         try
         {
@@ -59,5 +59,15 @@ public class ApiController : ControllerBase
             _logger.LogInformation("Data not found: {msg}", exc.Message);
             return new NotFoundResult();
         }
+    }
+
+    [HttpGet]
+    [Route("subscribers")]
+    [Authorize]
+    [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
+    public async Task<IActionResult> SubscribersAsync()
+    {
+        var subscribers = await _subscriptition.GetSubscribersAsync();
+        return new JsonResult(subscribers);
     }
 }

@@ -43,4 +43,14 @@ public class SubscriptitionService : ISubscriptitionService
         await _context.Subscriptitions.AddAsync(record);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<IEnumerable<string?>> GetSubscribersAsync()
+    {
+        return await _context
+            .Subscriptitions
+            .Include(static x => x.User)
+            .Where(static x => x.Active)
+            .Select(static x => x.User.Email)
+            .ToListAsync();
+    }
 }
