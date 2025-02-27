@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Text;
 using Microsoft.Extensions.Configuration;
 using Observer.Common.Implementations.Services.Content;
 
@@ -238,16 +237,12 @@ public class FurtherContentParserTests
                                
                                </body></html>
                                """;
-        var stream = CreateStreamFromString(content);
-        var expectedValue = DateTimeOffset.Parse("12/02/2025 18:19:00 PM +05:00", CultureInfo.InvariantCulture);
+        var expectedValue = DateTimeOffset.Parse("02/12/2025 18:19:00 PM +05:00", CultureInfo.InvariantCulture);
         
         // Act
-        var result = _parser.ExtractModifiedTimestamp(stream);
+        var result = _parser.ExtractModifiedTimestamp(content);
 
         // Assert
         Assert.That(result, Is.EqualTo(expectedValue));
     }
-    
-    private static MemoryStream CreateStreamFromString(string s)
-	    => new(Encoding.UTF8.GetBytes(s));
 }

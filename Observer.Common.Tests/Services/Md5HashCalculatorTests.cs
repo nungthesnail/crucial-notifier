@@ -14,10 +14,9 @@ public sealed class Md5HashCalculatorTests
     public async Task TestCalculateHashAsync_InputIsString_ResultIsCorrectHash(string input, string expectedHash)
     {
         // Arrange
-        var inputStream = CreateStreamFromString(input);
         
         // Act
-        var hash = await _calculator.CalculateHashAsync(inputStream);
+        var hash = await _calculator.CalculateHashAsync(input);
         
         // Assert
         Assert.That(hash, Is.EqualTo(expectedHash));
@@ -27,10 +26,10 @@ public sealed class Md5HashCalculatorTests
     public void TestCalculateHashAsync_InputIsNull_ThrowsArgumentNullException()
     {
         // Arrange
-        Stream inputStream = null!;
+        string nullString = null!;
         
         // Act
-        var task = _calculator.CalculateHashAsync(inputStream);
+        var task = _calculator.CalculateHashAsync(nullString);
         
         // Assert
         Assert.ThrowsAsync<ArgumentNullException>(async () => await task);
