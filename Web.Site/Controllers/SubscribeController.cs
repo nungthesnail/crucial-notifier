@@ -2,7 +2,7 @@
 
 namespace Web.Site.Controllers;
 
-public class HomeController : Controller
+public class SubscribeController : Controller
 {
     public IActionResult Index()
     {

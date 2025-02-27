@@ -19,4 +19,9 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: "Cascadia Code", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+footer {
+  background-color: #ffffff;
 }
