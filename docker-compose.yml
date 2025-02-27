@@ -1,7 +1,7 @@
 version: "3"
 services:
   rabbitmq:
-    image: rabbitmq:4
+    image: rabbitmq:4-management
     env_file: secrets/environment.env
     volumes:
       - C:/var/lib/rabbitmq:/var/lib/rabbitmq

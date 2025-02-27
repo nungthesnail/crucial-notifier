@@ -18,7 +18,7 @@ public partial class FurtherContentParser
             static options => options.ErrorOnUnknownConfiguration = true);
     }
     
-    public DateTimeOffset? ExtractModifiedTimestamp(Stream htmlContent)
+    public DateTimeOffset? ExtractModifiedTimestamp(string htmlContent)
     {
         var parser = new HtmlParser().ParseDocument(htmlContent);
         var query = $".{_settings.InterestingClass}";

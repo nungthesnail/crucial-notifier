@@ -2,5 +2,5 @@
 
 public interface IHashCalculator
 {
-    Task<string> CalculateHashAsync(Stream content);
+    Task<string> CalculateHashAsync(string content);
 }

@@ -49,7 +49,7 @@ public class ContentProvider : IContentProvider
             };
     }
 
-    private async Task<Stream> GetTargetResourceAsync(CancellationToken stoppingToken)
+    private async Task<string> GetTargetResourceAsync(CancellationToken stoppingToken)
     {
         try
         {
@@ -58,7 +58,7 @@ public class ContentProvider : IContentProvider
             var response = await HttpClient.SendAsync(message, stoppingToken);
             ThrowIfNotSuccess(response);
             
-            return await response.Content.ReadAsStreamAsync(stoppingToken);
+            return await response.Content.ReadAsStringAsync(stoppingToken);
         }
         catch (HttpRequestException)
         {
