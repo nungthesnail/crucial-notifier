@@ -19,8 +19,7 @@ public class ApiController : ControllerBase
     }
     
     [HttpGet]
-    [Route("subscribed")]
-    [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Any)]
+    [Route("[controller]/subscribed")]
     public async Task<IActionResult> IsUserSubscribedAsync()
     {
         try
@@ -44,7 +43,7 @@ public class ApiController : ControllerBase
     }
 
     [HttpPost]
-    [Route("subscribe")]
+    [Route("[controller]/subscribe")]
     [Authorize]
     public async Task<IActionResult> SubscribeAsync()
     {
@@ -62,12 +61,29 @@ public class ApiController : ControllerBase
     }
 
     [HttpGet]
-    [Route("subscribers")]
+    [Route("[controller]/subscribers")]
     [Authorize]
-    [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> SubscribersAsync()
     {
         var subscribers = await _subscriptition.GetSubscribersAsync();
         return new JsonResult(subscribers);
+    }
+
+    [HttpDelete]
+    [Route("[controller]/unsubscribe")]
+    [Authorize]
+    public async Task<IActionResult> UnsubscribeAsync()
+    {
+        try
+        {
+            var userName = User.Identity?.Name;
+            await _subscriptition.UnsubscribeUserAsync(userName);
+            return Ok();
+        }
+        catch (DataNotFoundException exc)
+        {
+            _logger.LogInformation("Data not found: {msg}", exc.Message);
+            return new NotFoundResult();
+        }
     }
 }

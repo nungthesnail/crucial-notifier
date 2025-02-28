@@ -33,7 +33,15 @@ public class SubscriptitionService : ISubscriptitionService
             .Where(x => x.UserId == user.Id)
             .FirstOrDefaultAsync();
         if (existingRecord is not null)
+        {
+            if (existingRecord.Active)
+                return;
+            
+            existingRecord.Active = true;
+            _context.Subscriptitions.Update(existingRecord);
+            await _context.SaveChangesAsync();
             return;
+        }
         
         var record = new Data.Models.Subscriptition
         {
@@ -52,5 +60,19 @@ public class SubscriptitionService : ISubscriptitionService
             .Where(static x => x.Active)
             .Select(static x => x.User.Email)
             .ToListAsync();
+    }
+
+    public async Task UnsubscribeUserAsync(string? userName)
+    {
+        var subscription = await _context
+            .Subscriptitions
+            .Where(x => x.User.UserName == userName)
+            .FirstOrDefaultAsync();
+        if (subscription is null)
+            throw new DataNotFoundException("User not found");
+        
+        subscription.Active = false;
+        _context.Subscriptitions.Update(subscription);
+        await _context.SaveChangesAsync();
     }
 }

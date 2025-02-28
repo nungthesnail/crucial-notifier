@@ -37,6 +37,9 @@
 <footer class="border-top footer text-muted">
     <div class="container">
         &copy; 2025 - Crucial Notifier - <a asp-area="" asp-controller="Home" asp-action="Index" class="link-dark">На главную</a>
+        <a href="@Url.Action("Unsubscribe", "Subscribe")" id="unsubscribe-link" style="display: none;" class="text-muted">
+            Отписаться
+        </a>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

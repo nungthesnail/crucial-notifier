@@ -10,4 +10,9 @@ public class SubscribeController : Controller
     {
         return View();
     }
+    
+    public IActionResult Unsubscribe()
+    {
+        return View();
+    }
 }

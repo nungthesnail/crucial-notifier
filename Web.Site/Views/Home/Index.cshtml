@@ -26,7 +26,7 @@
     </div>
 </div>
 <div class="p-2 border border-2 border-dark rounded-3" style="margin-top: 200pt;">
-    <p>
+    <p class="m-0">
         Каждые 10 минут загружается страница с расписанием. Она проверяется на изменение временной метки и контента.
         Когда расписание обновлено, вам на почту отправляется уведомление.
     </p>
@@ -99,8 +99,10 @@
                 if (data.result)
                 {
                     let blockSubscribed = $("#block-subscribed");
+                    let linkUnsubscribe = $("#unsubscribe-link");
                     blockLoading.hide();
                     blockSubscribed.show();
+                    linkUnsubscribe.show();
                 }
                 else
                 {
