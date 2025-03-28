@@ -8,5 +8,4 @@ public interface IRepository<TModel, in TId>
     Task<IEnumerable<TModel>> GetAllAsync();
     Task UpdateAsync(TModel model);
     Task DeleteAsync(TId id);
-    Task CommitAsync();
 }

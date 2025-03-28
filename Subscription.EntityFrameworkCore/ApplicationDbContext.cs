@@ -4,13 +4,10 @@ using Subscription.Model;
 
 namespace Subscription.EntityFrameworkCore;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    : DbContext(options)
 {
     public DbSet<SubscriptionModel> Subscriptions { get; set; }
-    
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

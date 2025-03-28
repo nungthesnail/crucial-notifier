@@ -4,7 +4,7 @@ namespace Subscription.Core.Interfaces;
 
 public interface ISubscriptionManager
 {
-    Task SubscribeAsync(string userId, string email);
+    Task<Guid> SubscribeAsync(string userId, string email);
     Task ChangeSubscriptionEmailAsync(string userId, string newEmail);
     Task DisableSubscriptionAsync(string userId);
     Task EnableSubscriptionAsync(string userId);
