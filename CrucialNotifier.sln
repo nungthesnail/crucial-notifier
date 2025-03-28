@@ -1,60 +1,71 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifier", "Notifier", "{D17F9B2E-AA5C-45CF-9E25-710806446BFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Observer", "Observer", "{612F77C7-5B9E-4982-AEEF-32FAEC9F0362}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.App", "Notifier.App\Notifier.App.csproj", "{54DFAA6A-9A24-48F5-879F-54187C803C63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifier.App", "Notifier.App\Notifier.App.csproj", "{54DFAA6A-9A24-48F5-879F-54187C803C63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.Common", "Notifier.Common\Notifier.Common.csproj", "{EA267238-16C8-4293-A2F6-A207DBBE137C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifier.Common", "Notifier.Common\Notifier.Common.csproj", "{EA267238-16C8-4293-A2F6-A207DBBE137C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer.App", "Observer.App\Observer.App.csproj", "{F424DE32-14AF-458C-9144-8926B53C7DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Observer.App", "Observer.App\Observer.App.csproj", "{F424DE32-14AF-458C-9144-8926B53C7DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer.Common", "Observer.Common\Observer.Common.csproj", "{5C2F712D-5EBD-4E42-AB73-6D18EC352D70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Observer.Common", "Observer.Common\Observer.Common.csproj", "{5C2F712D-5EBD-4E42-AB73-6D18EC352D70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer.EntityFramework", "Observer.EntityFramework\Observer.EntityFramework.csproj", "{94CCFA42-FB4A-4AF8-8D63-272D04E80412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Observer.EntityFramework", "Observer.EntityFramework\Observer.EntityFramework.csproj", "{94CCFA42-FB4A-4AF8-8D63-272D04E80412}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8037E497-A898-48DB-AF3B-967E4CBC8323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Observer.Common.Tests", "Observer.Common.Tests\Observer.Common.Tests.csproj", "{0E2391F0-B5B7-4780-817E-AF5798EF2A7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Observer.Common.Tests", "Observer.Common.Tests\Observer.Common.Tests.csproj", "{0E2391F0-B5B7-4780-817E-AF5798EF2A7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.Common.Tests", "Notifier.Common.Tests\Notifier.Common.Tests.csproj", "{59DFB2A6-5B27-4A4B-AD08-1EFB1F32C2A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifier.Common.Tests", "Notifier.Common.Tests\Notifier.Common.Tests.csproj", "{59DFB2A6-5B27-4A4B-AD08-1EFB1F32C2A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Common", "Tests.Common\Tests.Common.csproj", "{F424F85F-1C72-4E9E-BC00-B68E000C1213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Common", "Tests.Common\Tests.Common.csproj", "{F424F85F-1C72-4E9E-BC00-B68E000C1213}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{073D9E0F-F525-4146-9CF1-AF80078B5DF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Site", "Web.Site\Web.Site.csproj", "{5EDF720B-133B-4612-9A63-1D3ADA73F7DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Site", "Web.Site\Web.Site.csproj", "{5EDF720B-133B-4612-9A63-1D3ADA73F7DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SubscriptionService", "SubscriptionService", "{D619BE2B-8096-463B-ADA1-D71DC0BF43AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionApi", "SubscriptionApi\SubscriptionApi.csproj", "{95032926-41BA-4CE8-B561-4F862397B685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscriptionApi", "SubscriptionApi\SubscriptionApi.csproj", "{95032926-41BA-4CE8-B561-4F862397B685}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B3DA0081-DF59-4A2F-A186-8C6B9FEDD491}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{B4F82D8D-83C8-4AA4-ACD4-2254B05AABB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brokers.Common", "Brokers.Common\Brokers.Common.csproj", "{58E68034-7597-43BE-8E6B-FB3EBAE703F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brokers.Common", "Brokers.Common\Brokers.Common.csproj", "{58E68034-7597-43BE-8E6B-FB3EBAE703F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brokers.RabbitMq", "Brokers.RabbitMq\Brokers.RabbitMq.csproj", "{CA890472-DBBD-4F5F-BE44-744705ED334E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brokers.RabbitMq", "Brokers.RabbitMq\Brokers.RabbitMq.csproj", "{CA890472-DBBD-4F5F-BE44-744705ED334E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brokers.RabbitMq.Tests", "Brokers.RabbitMq.Tests\Brokers.RabbitMq.Tests.csproj", "{259440DB-0D32-4427-BBF1-425572735801}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brokers.RabbitMq.Tests", "Brokers.RabbitMq.Tests\Brokers.RabbitMq.Tests.csproj", "{259440DB-0D32-4427-BBF1-425572735801}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.Core", "Subscription.Core\Subscription.Core.csproj", "{34827BFB-D66F-4C84-BA8E-F515F4BCE47E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.Core", "Subscription.Core\Subscription.Core.csproj", "{34827BFB-D66F-4C84-BA8E-F515F4BCE47E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.EntityFrameworkCore", "Subscription.EntityFrameworkCore\Subscription.EntityFrameworkCore.csproj", "{10821C88-114E-4FA9-B92F-FE559CDE8D03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.EntityFrameworkCore", "Subscription.EntityFrameworkCore\Subscription.EntityFrameworkCore.csproj", "{10821C88-114E-4FA9-B92F-FE559CDE8D03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.Implementations", "Subscription.Implementations\Subscription.Implementations.csproj", "{B1A9C659-6778-49B9-8126-2A1453EBF88A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.Implementations", "Subscription.Implementations\Subscription.Implementations.csproj", "{B1A9C659-6778-49B9-8126-2A1453EBF88A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.Model", "Subscription.Model\Subscription.Model.csproj", "{0097156C-155F-4D2C-9D92-C69DA160E710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.Model", "Subscription.Model\Subscription.Model.csproj", "{0097156C-155F-4D2C-9D92-C69DA160E710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.Core.Tests", "Subscription.Core.Tests\Subscription.Core.Tests.csproj", "{F68F9A0A-FA7A-45BF-A672-FF30AA190079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.Core.Tests", "Subscription.Core.Tests\Subscription.Core.Tests.csproj", "{F68F9A0A-FA7A-45BF-A672-FF30AA190079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscription.Implementations.Tests", "Subscription.Implementations.Tests\Subscription.Implementations.Tests.csproj", "{99AA577B-FFD0-4B76-8862-2FCE95043086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscription.Implementations.Tests", "Subscription.Implementations.Tests\Subscription.Implementations.Tests.csproj", "{99AA577B-FFD0-4B76-8862-2FCE95043086}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NativeApps", "NativeApps", "{7999DA00-BAC0-4218-BCF8-834848E3F04C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrucialApp", "CrucialApp", "{BB10557A-92BD-4DE9-979A-54557ED97893}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.App", "Crucial.App\Crucial.App\Crucial.App.csproj", "{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.App.Android", "Crucial.App\Crucial.App.Android\Crucial.App.Android.csproj", "{C21629ED-CC2F-47C5-8660-033E76DFE564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.App.Desktop", "Crucial.App\Crucial.App.Desktop\Crucial.App.Desktop.csproj", "{D5A916DA-4BF6-484B-BC7A-CCD287AA8493}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.App.Browser", "Crucial.App\Crucial.App.Browser\Crucial.App.Browser.csproj", "{FA26C27A-4DC3-41E7-B477-C6A1808E67C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrucialApp", "CrucialApp", "{7ED86B61-E4CE-43A2-B279-3E6932A15E83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,6 +149,27 @@ Global
 		{99AA577B-FFD0-4B76-8862-2FCE95043086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AA577B-FFD0-4B76-8862-2FCE95043086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AA577B-FFD0-4B76-8862-2FCE95043086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21629ED-CC2F-47C5-8660-033E76DFE564}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA26C27A-4DC3-41E7-B477-C6A1808E67C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA26C27A-4DC3-41E7-B477-C6A1808E67C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA26C27A-4DC3-41E7-B477-C6A1808E67C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA26C27A-4DC3-41E7-B477-C6A1808E67C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{54DFAA6A-9A24-48F5-879F-54187C803C63} = {D17F9B2E-AA5C-45CF-9E25-710806446BFF}
@@ -160,6 +192,10 @@ Global
 		{0097156C-155F-4D2C-9D92-C69DA160E710} = {D619BE2B-8096-463B-ADA1-D71DC0BF43AD}
 		{F68F9A0A-FA7A-45BF-A672-FF30AA190079} = {8037E497-A898-48DB-AF3B-967E4CBC8323}
 		{99AA577B-FFD0-4B76-8862-2FCE95043086} = {8037E497-A898-48DB-AF3B-967E4CBC8323}
-		{BB10557A-92BD-4DE9-979A-54557ED97893} = {7999DA00-BAC0-4218-BCF8-834848E3F04C}
+		{7ED86B61-E4CE-43A2-B279-3E6932A15E83} = {7999DA00-BAC0-4218-BCF8-834848E3F04C}
+		{7F5D6CA1-A510-4C19-9343-75FCEC94EAB3} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
+		{C21629ED-CC2F-47C5-8660-033E76DFE564} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
+		{FA26C27A-4DC3-41E7-B477-C6A1808E67C2} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
+		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
 	EndGlobalSection
 EndGlobal
