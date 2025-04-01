@@ -71,6 +71,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.Core", "Crucial.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.Core.Tests", "Crucial.Core.Tests\Crucial.Core.Tests.csproj", "{4F5E999C-2673-4BC8-8808-D7B71FAE4655}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.EntityFrameworkCore", "Crucial.EntityFrameworkCore\Crucial.EntityFrameworkCore.csproj", "{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crucial.Implementations", "Crucial.Implementations\Crucial.Implementations.csproj", "{4A0183A1-D086-436B-9DF8-6BA099C2A226}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +183,14 @@ Global
 		{4F5E999C-2673-4BC8-8808-D7B71FAE4655}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F5E999C-2673-4BC8-8808-D7B71FAE4655}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F5E999C-2673-4BC8-8808-D7B71FAE4655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0183A1-D086-436B-9DF8-6BA099C2A226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0183A1-D086-436B-9DF8-6BA099C2A226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0183A1-D086-436B-9DF8-6BA099C2A226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0183A1-D086-436B-9DF8-6BA099C2A226}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -211,5 +223,7 @@ Global
 		{D5A916DA-4BF6-484B-BC7A-CCD287AA8493} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
 		{AB6F8196-4807-4568-9C17-1D976BD4AA8B} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
 		{4F5E999C-2673-4BC8-8808-D7B71FAE4655} = {8037E497-A898-48DB-AF3B-967E4CBC8323}
+		{7A588571-AD9B-4FE8-8AAF-5F4FDCAD11A0} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
+		{4A0183A1-D086-436B-9DF8-6BA099C2A226} = {7ED86B61-E4CE-43A2-B279-3E6932A15E83}
 	EndGlobalSection
 EndGlobal
