@@ -4,7 +4,7 @@ namespace Crucial.Core.Interfaces.Managers;
 
 public interface ICourseManager
 {
-    Task<Guid> CreateCourseAsync(CourseDto courseSettings);
+    Task<Guid> CreateCourseAsync(CourseDto courseData);
     Task<CourseDto?> GetCourseByIdAsync(Guid courseId);
     Task<IEnumerable<CourseDto?>> GetCourseByNameAsync(string courseName);
     Task<IEnumerable<CourseDto>> GetAllCoursesAsync();

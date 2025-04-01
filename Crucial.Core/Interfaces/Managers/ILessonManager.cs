@@ -4,5 +4,5 @@ public interface ILessonManager
 {
     Task AddPassedLessonsToCourseAsync(Guid courseId, int count);
     Task<int> CalculateTotalLessonsCountAsync();
-    Task<IDictionary<Guid, int>> CalculateLessonsCountByAllCoursesAsync();
+    Task<int> CalculateAllPassedLessonsCountAsync();
 }

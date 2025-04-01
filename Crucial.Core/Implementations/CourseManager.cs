@@ -1,4 +1,5 @@
-﻿using Crucial.Core.Interfaces.Dal;
+﻿using Crucial.Core.Exceptions;
+using Crucial.Core.Interfaces.Dal;
 using Crucial.Core.Interfaces.Managers;
 using Crucial.Core.Models;
 
@@ -13,33 +14,71 @@ public class CourseManager : ICourseManager
         _uow = uow;
     }
     
-    public Task<Guid> CreateCourseAsync(CourseDto courseSettings)
+    public async Task<Guid> CreateCourseAsync(CourseDto courseData)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _uow.BeginTransactionAsync();
+            await _uow.CourseRepository.AddAsync(courseData);
+            await _uow.CommitTransactionAsync();
+            return courseData.Id;
+        }
+        catch (TransactionException exc)
+        {
+            throw new InternalCourseException(exc.Message, exc.InnerException);
+        }
     }
 
-    public Task<CourseDto?> GetCourseByIdAsync(Guid courseId)
+    public async Task<CourseDto?> GetCourseByIdAsync(Guid courseId)
     {
-        throw new NotImplementedException();
+        await _uow.BeginTransactionAsync();
+        var result = await _uow.CourseRepository.GetAsync(courseId);
+        await _uow.CommitTransactionAsync(saveChanges: false);
+        return result;
+        
     }
 
-    public Task<IEnumerable<CourseDto?>> GetCourseByNameAsync(string courseName)
+    public async Task<IEnumerable<CourseDto?>> GetCourseByNameAsync(string courseName)
     {
-        throw new NotImplementedException();
+        await _uow.BeginTransactionAsync();
+        var result = await _uow.CourseRepository.GetByNameAsync(courseName);
+        await _uow.CommitTransactionAsync(saveChanges: false);
+        return [result]; // In future versions here will be a text search
     }
 
-    public Task<IEnumerable<CourseDto>> GetAllCoursesAsync()
+    public async Task<IEnumerable<CourseDto>> GetAllCoursesAsync()
     {
-        throw new NotImplementedException();
+        await _uow.BeginTransactionAsync();
+        var result = await _uow.CourseRepository.GetAllAsync();
+        await _uow.CommitTransactionAsync(saveChanges: false);
+        return result;
     }
 
-    public Task EditCourseAsync(CourseDto course)
+    public async Task EditCourseAsync(CourseDto course)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _uow.BeginTransactionAsync();
+            await _uow.CourseRepository.UpdateAsync(course);
+            await _uow.CommitTransactionAsync();
+        }
+        catch (TransactionException exc)
+        {
+            throw new InternalCourseException(exc.Message, exc.InnerException);
+        }
     }
 
-    public Task LeaveCourseAsync(Guid courseId)
+    public async Task LeaveCourseAsync(Guid courseId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _uow.BeginTransactionAsync();
+            await _uow.CourseRepository.DeleteAsync(courseId);
+            await _uow.CommitTransactionAsync();
+        }
+        catch (TransactionException exc)
+        {
+            throw new InternalCourseException(exc.Message, exc.InnerException);
+        }
     }
 }

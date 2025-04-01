@@ -1,7 +1,7 @@
 ﻿namespace Crucial.Core.Models;
 
 public record CourseDto(
-    Guid CourseId,
+    Guid Id,
     string Name,
     string? Description,
     int TotalLessonsCount,
