@@ -1,12 +1,13 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Crucial.App.ViewModels;
 using Crucial.App.Views;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Crucial.App
 {
-	public partial class App : Application
+	public class App : Application
 	{
 		public override void Initialize()
 		{
@@ -15,23 +16,36 @@ namespace Crucial.App
 
 		public override void OnFrameworkInitializationCompleted()
 		{
-			if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+			var services = PrepareServices();
+			var mainWindow = services.GetRequiredService<MainWindow>();
+			
+			switch (ApplicationLifetime)
 			{
-				desktop.MainWindow = new MainWindow
-				{
-					DataContext = new MainViewModel()
-				};
-			}
-			else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
-			{
-				singleViewPlatform.MainView = new MainView
-				{
-					DataContext = new MainViewModel()
-				};
+				case IClassicDesktopStyleApplicationLifetime desktop:
+					desktop.MainWindow = mainWindow;
+					break;
+				case ISingleViewApplicationLifetime singleViewPlatform:
+					singleViewPlatform.MainView = mainWindow;
+					break;
 			}
 
 			base.OnFrameworkInitializationCompleted();
 		}
 
+		private static ServiceProvider PrepareServices()
+		{
+			var config = LoadConfiguration();
+			
+			var servicesCollection = new ServiceCollection();
+			servicesCollection
+				.AddCommonServices(config)
+				.AddViewModels()
+				.AddViews();
+			return servicesCollection.BuildServiceProvider();
+
+			static IConfiguration LoadConfiguration() => new ConfigurationBuilder()
+					.AddJsonFile("appsettings.json")
+					.Build();
+		}
 	}
 }
