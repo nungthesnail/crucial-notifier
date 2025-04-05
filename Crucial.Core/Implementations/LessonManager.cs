@@ -1,6 +1,7 @@
 ﻿using Crucial.Core.Exceptions;
 using Crucial.Core.Interfaces.Dal;
 using Crucial.Core.Interfaces.Managers;
+using Crucial.Core.Models;
 
 namespace Crucial.Core.Implementations;
 
@@ -12,8 +13,8 @@ public class LessonManager : ILessonManager
     {
         _uow = uow;
     }
-
-    public async Task AddPassedLessonsToCourseAsync(Guid courseId, int count)
+    
+    public async Task AddPassedLessonsToCourseAsync(Guid courseId, IEnumerable<LessonDto> lessons)
     {
         try
         {
@@ -23,9 +24,8 @@ public class LessonManager : ILessonManager
             if (course is null)
                 throw new CourseDoesntExistsException($"Course with id {courseId} doesn't exist");
             
-            course = course with { LessonsPassedCount = course.LessonsPassedCount + count };
-            if (course.LessonsPassedCount < 0)
-                throw new BadDataProvidedException("Altered value cannot be less than zero");
+            course.Lessons.Clear();
+            course.Lessons.AddRange(lessons);
             await _uow.CourseRepository.UpdateAsync(course);
             
             await _uow.CommitTransactionAsync();

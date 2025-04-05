@@ -46,16 +46,33 @@ public class EfCourseRepository : ICourseRepository
 
     public async Task UpdateAsync(CourseDto course)
     {
-        var entity = await _dbContext.Courses.FirstOrDefaultAsync(x => x.Id == course.Id);
+        var entity = await _dbContext.Courses
+            .Include(courseModel => courseModel.Lessons)
+            .FirstOrDefaultAsync(x => x.Id == course.Id);
         if (entity is null)
             throw new CourseDoesntExistsException($"Course with id {course.Id} doesn't exists");
         
         entity.Name = course.Name;
         entity.Description = course.Description;
         entity.TotalLessonsCount = course.TotalLessonsCount;
-        entity.LessonsPassedCount = course.LessonsPassedCount;
-        
+        MapLessons();
         _dbContext.Courses.Update(entity);
+
+        return;
+        
+        void MapLessons()
+        {
+            _ = entity.Lessons.Join(
+                course.Lessons,
+                a => a.Id,
+                b => b.Id,
+                (a, b) => a.Date = b.Date);
+            
+            entity.Lessons.AddRange(
+                course.Lessons
+                    .Where(x => entity.Lessons.All(l => l.Id != x.Id))
+                    .Select(static x => x.Adapt<LessonModel>()));
+        }
     }
 
     public async Task DeleteAsync(Guid key)
@@ -63,7 +80,6 @@ public class EfCourseRepository : ICourseRepository
         var entity = await _dbContext.Courses.FirstOrDefaultAsync(x => x.Id == key);
         if (entity is null)
             return;
-        
         _dbContext.Courses.Remove(entity);
     }
 }

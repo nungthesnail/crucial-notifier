@@ -69,10 +69,10 @@ public class CourseManagerTests
         {
             // Arrange
             var course = new CourseDto(
-                Id: courseId,
-                Name: "Test Course",
-                Description: null,
-                TotalLessonsCount: 10);
+                id: courseId,
+                name: "Test Course",
+                description: null,
+                totalLessonsCount: 10);
 
             var manager = new CourseManager(_uowMock);
 
@@ -98,15 +98,15 @@ public class CourseManagerTests
         {
             // Arrange
             var course1 = new CourseDto(
-                Id: courseId,
-                Name: "Test Course 1",
-                Description: null,
-                TotalLessonsCount: 10);
+                id: courseId,
+                name: "Test Course 1",
+                description: null,
+                totalLessonsCount: 10);
             var course2 = new CourseDto(
-                Id: courseId,
-                Name: "Test Course 2",
-                Description: null,
-                TotalLessonsCount: 5);
+                id: courseId,
+                name: "Test Course 2",
+                description: null,
+                totalLessonsCount: 5);
             _coursesStorage.Add(course1);
 
             var manager = new CourseManager(_uowMock);

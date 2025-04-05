@@ -24,9 +24,6 @@ public class CourseModel
     [Column("total_lessons_count")]
     [Required]
     public int TotalLessonsCount { get; set; }
-    
-    [Column("lessons_passed_count")]
-    [DefaultValue(0)]
-    [Required]
-    public int LessonsPassedCount { get; set; }
+
+    public List<LessonModel> Lessons { get; set; } = [];
 }

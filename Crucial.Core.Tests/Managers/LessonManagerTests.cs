@@ -66,53 +66,35 @@ public class LessonManagerTests
         try
         {
             // Arrange
+            const int addingPassedLessonsCount = 2;
+
             var courseId = Guid.Parse("20cebe1b-dc84-4fa2-8447-5e22840debb7");
             _coursesStorage.Add(new CourseDto(
-                Id: courseId,
-                Name: "Course 1",
-                Description: null,
-                TotalLessonsCount: 15,
-                LessonsPassedCount: 2));
-            const int addingPassedLessonsCount = 10;
-            const int expectedPassedLessonsCount = 2 + addingPassedLessonsCount;
+                id: courseId,
+                name: "Course 1",
+                description: null,
+                totalLessonsCount: 15));
+            
+            List<LessonDto> lessons =
+            [
+                new()
+                {
+                    Date = DateTime.Now.AddDays(-1),
+                },
+                new()
+                {
+                    Date = DateTime.Now.AddDays(-2),
+                }
+            ];
 
             var manager = new LessonManager(_uowMock);
 
             // Act
-            await manager.AddPassedLessonsToCourseAsync(courseId, addingPassedLessonsCount);
+            await manager.AddPassedLessonsToCourseAsync(courseId, lessons);
             var courseEntity = _coursesStorage.First(x => x.Id == courseId);
 
             // Assert
-            Assert.That(courseEntity.LessonsPassedCount, Is.EqualTo(expectedPassedLessonsCount));
-        }
-        finally
-        {
-            _coursesStorage.Clear();
-        }
-    }
-
-    [Test]
-    public async Task TestAddPassedLessonsToCourseAsync_InputIsCourseIdAndMinus10_ThrowsBadDataProvidedException_Async()
-    {
-        try
-        {
-            // Arrange
-            var courseId = Guid.Parse("db497fbd-e887-4ae6-8cc2-657cd888e559");
-            const int addingPassedLessonsCount = -10;
-            
-            _coursesStorage.Add(new CourseDto(
-                Id: courseId,
-                Name: "Course 1",
-                Description: null,
-                TotalLessonsCount: 15,
-                LessonsPassedCount: 2));
-            var manager = new LessonManager(_uowMock);
-            
-            // Act
-            AsyncTestDelegate throws = () => manager.AddPassedLessonsToCourseAsync(courseId, addingPassedLessonsCount);
-
-            // Assert
-            await Assert.ThatAsync(throws, Throws.TypeOf<BadDataProvidedException>());
+            Assert.That(courseEntity.LessonsPassedCount, Is.EqualTo(addingPassedLessonsCount));
         }
         finally
         {
@@ -129,20 +111,20 @@ public class LessonManagerTests
             _coursesStorage.AddRange(
                 [
                     new CourseDto(
-                        Id: Guid.NewGuid(),
-                        Name: "Course 1",
-                        Description: null,
-                        TotalLessonsCount: 15),
+                        id: Guid.NewGuid(),
+                        name: "Course 1",
+                        description: null,
+                        totalLessonsCount: 15),
                     new CourseDto(
-                        Id: Guid.NewGuid(),
-                        Name: "Course 2",
-                        Description: null,
-                        TotalLessonsCount: 3),
+                        id: Guid.NewGuid(),
+                        name: "Course 2",
+                        description: null,
+                        totalLessonsCount: 3),
                     new CourseDto(
-                        Id: Guid.NewGuid(),
-                        Name: "Course 3",
-                        Description: null,
-                        TotalLessonsCount: 7)
+                        id: Guid.NewGuid(),
+                        name: "Course 3",
+                        description: null,
+                        totalLessonsCount: 7)
                 ]);
             const int expectedTotalLessonsCount = 25;
             var manager = new LessonManager(_uowMock);
@@ -188,23 +170,23 @@ public class LessonManagerTests
             _coursesStorage.AddRange(
             [
                 new CourseDto(
-                    Id: id1,
-                    Name: "Course 1",
-                    Description: null,
-                    TotalLessonsCount: 20,
-                    LessonsPassedCount: 10),
+                    id: id1,
+                    name: "Course 1",
+                    description: null,
+                    totalLessonsCount: 20,
+                    lessonsPassedCount: 10),
                 new CourseDto(
-                    Id: id2,
-                    Name: "Course 2",
-                    Description: null,
-                    TotalLessonsCount: 20,
-                    LessonsPassedCount: 11),
+                    id: id2,
+                    name: "Course 2",
+                    description: null,
+                    totalLessonsCount: 20,
+                    lessonsPassedCount: 11),
                 new CourseDto(
-                    Id: id3,
-                    Name: "Course 3",
-                    Description: null,
-                    TotalLessonsCount: 20,
-                    LessonsPassedCount: 4)
+                    id: id3,
+                    name: "Course 3",
+                    description: null,
+                    totalLessonsCount: 20,
+                    lessonsPassedCount: 4)
             ]);
             var manager = new LessonManager(_uowMock);
             
